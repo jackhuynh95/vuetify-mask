@@ -1,13 +1,13 @@
 {
   "name": "@jackhuynh1995/vuetify-mask",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Mask components to vuetify 2",
   "private": false,
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "src/component/index.js",
+  "main": "src/components/index.js",
   "files": [
-    "src/component"
+    "src/components"
   ],
   "author": {
     "name": "Juarez Nasato",
