@@ -19,7 +19,7 @@ vuetify-mask is a component for working with some of the main types of masks in 
 $ npm install vuetify-mask --save
 ```
 
-## Register
+## Register Globally
 1- Create a file src/plugins/vuetify-mask.js with:  
 ```js
 import Vue from "vue";  
@@ -31,6 +31,24 @@ export default VuetifyMask;
 2- Add in src/mains.js file:  
 ```js
 import "./plugins/vuetify-mask.js";
+```
+
+## Register Locally
+- You can import individual components as needed. For example, to use the VTextFieldMoney component:  
+```js
+import {
+  VTextFieldMoney,
+  VTextFieldPercent,
+  VTextFieldInteger,
+  VTextFieldDateTime,
+  VTextFieldDateTimePicker,
+  VTextFieldSimpleMask,
+  VTextFieldCpf,
+  VTextFieldCnpj,
+  VTextFieldCep,
+  VTextFieldFileBase64,
+  VTextFieldDotNumber
+} from 'vuetify-mask';
 ```
 
 ## Properties (v-bind:properties)
