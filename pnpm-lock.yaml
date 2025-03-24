@@ -23,9 +23,6 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.x.x
         version: 9.33.0(eslint@8.57.1)
-      maska:
-        specifier: ^3.x.x
-        version: 3.1.1
       moment:
         specifier: ^2.29.1
         version: 2.30.1
@@ -569,9 +566,6 @@ packages:
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
-
-  maska@3.1.1:
-    resolution: {integrity: sha512-68ZJfZ6/YANwv7CufbQmcCNoHdJnIRxuQgZtSFZe5ltlmZ15ZdA01siUGLh9EfaUX65DN0l/A7g+o2xjTICeGQ==}
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -1313,8 +1307,6 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  maska@3.1.1: {}
 
   minimatch@3.1.2:
     dependencies:
