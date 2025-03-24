@@ -1,11 +1,18 @@
-import Vue from "vue";
-import Vuetify from "vuetify";
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 import "vuetify/dist/vuetify.min.css";
 import "@mdi/font/css/materialdesignicons.css";
+import { vMaska } from "maska/vue"
 
-const opts = {
-  icons: { iconfont: "mdi" }
-};
-Vue.use(Vuetify);
+export default function install(app) {
+  const vuetify = createVuetify({
+    components,
+    directives,
+  });
 
-export default new Vuetify(opts);
+  // Register the v-maska directive
+  app.directive('maska', vMaska);
+
+  app.use(vuetify);
+}
