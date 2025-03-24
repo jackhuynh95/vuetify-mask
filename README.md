@@ -25,9 +25,11 @@ $ npm install vuetify-mask --save
 ## Register Globally
 1- Create a file src/plugins/vuetify-mask.js with:  
 ```js
-import Vue from "vue";  
-import VuetifyMask from "vuetify-mask";  
-Vue.use(VuetifyMask);  
+import { createApp } from 'vue';
+import VuetifyMask from 'vuetify-mask';
+
+const app = createApp({});
+app.use(VuetifyMask);
 export default VuetifyMask;
 ```
 
