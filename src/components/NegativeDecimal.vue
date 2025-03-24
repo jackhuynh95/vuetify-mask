@@ -19,10 +19,25 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  emits: [
+    'blur',
+    'change',
+    'click',
+    'focus',
+    'keydown',
+    'mousedown',
+    'mouseup',
+    'update:modelValue',
+    'signal',
+  ],
+
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       default: "0",
     },
@@ -52,9 +67,11 @@ export default {
       },
     },
   },
+
   data: () => ({
     block: false,
   }),
+
   /*
    v-model="cmpValue": Dessa forma, ao digitar, o valor é atualizado automaticamente no componente pai.
    O valor digitado entra pelo newValue do Set é emitido para o componente pai, retorna pelo get e pára.
@@ -62,20 +79,22 @@ export default {
   computed: {
     cmpValue: {
       get: function() {
-        return this.humanFormat(this.value);
+        return this.humanFormat(this.modelValue);
       },
       set: function(newValue) {
-        this.$emit("input", this.machineFormat(newValue));
+        this.$emit('update:modelValue', this.machineFormat(newValue));
       },
     },
   },
+
   watch: {},
+
   methods: {
     humanFormat: function(value) {
       if (value || value === 0) {
         if (value < 0) {
           value = value * -1;
-          this.$emit("input", value);
+          this.$emit('update:modelValue', value);
           this.$emit("signal", "-");
           this.block = true;
         } else {
@@ -173,5 +192,5 @@ export default {
       }, 500);
     },
   },
-};
+});
 </script>

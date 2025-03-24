@@ -31,15 +31,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Integer from "@/components/Integer.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-integer": Integer,
   },
+
   data: () => ({
     value: "123456789", // 123 or "123" or "" or null
     label: "Integer",
   }),
-};
+});
 </script>

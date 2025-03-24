@@ -35,15 +35,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import SimpleMask from "@/components/SimpleMask.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-simplemask": SimpleMask,
   },
+
   data: () => ({
     value: "99999999999",
     label: "Phone Number",
   }),
-};
+});
 </script>

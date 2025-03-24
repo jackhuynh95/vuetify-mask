@@ -30,17 +30,20 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Cpf from "@/components/Cpf.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-cpf": Cpf,
   },
+
   data: () => ({
     value: "97702036028", // 123 or "123" or "" or null
     label: "CPF (Brazilian mask)",
   }),
-};
+});
 </script>
 
   // 'append-icon': value ? 'mdi-check-circle' : 'mdi-minus-circle',

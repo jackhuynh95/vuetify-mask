@@ -35,15 +35,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import SimpleMask from "@/components/SimpleMask.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-simplemask": SimpleMask,
   },
+
   data: () => ({
     value: "23-A568-B953-356", // 1.23 or "1.23" or "" or null
     label: "Simple Mask",
   }),
-};
+});
 </script>

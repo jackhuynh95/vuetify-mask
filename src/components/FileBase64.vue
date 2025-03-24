@@ -32,10 +32,14 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  emits: ['update:modelValue', 'fileName'],
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: [String],
       default: "",
     },
@@ -69,7 +73,7 @@ export default {
   computed: {
     cmpValue: {
       get: function() {
-        this.setImage(this.value);
+        this.setImage(this.modelValue);
         return this.imageName;
       },
     },
@@ -94,7 +98,7 @@ export default {
         fileReader.addEventListener("load", () => {
           this.fileBase64 = fileReader.result;
           this.imageFile = files[0];
-          this.$emit("input", this.fileBase64);
+          this.$emit('update:modelValue', this.fileBase64);
           this.$emit("fileName", this.imageName);
         });
       } else {
@@ -127,5 +131,5 @@ export default {
     //   this.showImage = showImage;
     // },
   },
-};
+});
 </script>

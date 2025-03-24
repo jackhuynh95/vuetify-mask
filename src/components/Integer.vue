@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-text-field
-      v-model="value"
+      :modelValue="modelValue"
       v-bind="properties"
       v-bind:label="label"
       v-bind:placeholder="placeholder"
@@ -14,6 +14,7 @@
           '#': { pattern: /[0-9]/, transform: (i) => i.toString().padStart(1, '0') },
         },
       }"
+      @update:modelValue="$emit('update:modelValue', $event)"
     />
   </div>
 </template>
@@ -22,7 +23,7 @@
 import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: [String, Number],
     default: '',
   },
@@ -49,5 +50,5 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['focus', 'blur', 'change']);
+const emit = defineEmits(['focus', 'blur', 'change', 'update:modelValue']);
 </script>

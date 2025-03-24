@@ -5,8 +5,8 @@
       v-bind:label="label"
       v-bind="properties"
       v-bind:maxlength="options.inputMask.length"
-      v-bind:append-icon="(value) ? 'mdi-check-circle' : ''"
-      v-bind:success="(value) ? true : false"
+      v-bind:append-icon="(modelValue) ? 'mdi-check-circle' : ''"
+      v-bind:success="(modelValue) ? true : false"
       v-on:keypress="keyPress"
       v-on:blur="$emit('blur')"
       v-on:change="$emit('change')"
@@ -21,12 +21,27 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import moment from "moment";
 
-export default {
+export default defineComponent({
+  emits: [
+    'blur',
+    'change',
+    'click',
+    'focus',
+    'keydown',
+    'mousedown',
+    'mouseup',
+    'update:modelValue',
+    'masked',
+  ],
+
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       default: "0",
     },
@@ -50,7 +65,9 @@ export default {
       },
     },
   },
+
   data: () => ({}),
+
   /*
    v-model="cmpValue": Dessa forma, ao digitar, o valor é atualizado automaticamente no componente pai.
    O valor digitado entra pelo newValue do Set é emitido para o componente pai, retorna pelo get e pára.
@@ -58,15 +75,17 @@ export default {
   computed: {
     cmpValue: {
       get: function() {
-        return this.humanFormat(this.value);
+        return this.humanFormat(this.modelValue);
       },
       set: function(newValue) {
-        this.$emit("input", this.machineFormat(newValue));
+        this.$emit('update:modelValue', this.machineFormat(newValue));
       },
     },
   },
+
   watch: {
   },
+
   methods: {
     humanFormat: function(value) {
       if (value) {
@@ -191,5 +210,5 @@ export default {
     },
 
   },
-};
+});
 </script>

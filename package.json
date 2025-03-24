@@ -1,7 +1,7 @@
 {
-  "name": "@jackhuynh1995/vuetify-mask",
-  "version": "1.1.5",
-  "description": "Mask components to vuetify 2",
+  "name": "vuetify-mask",
+  "version": "1.1.2",
+  "description": "Mask components for Vuetify 3",
   "private": false,
   "license": "MIT",
   "readmeFilename": "README.md",
@@ -34,27 +34,21 @@
     "url": "https://github.com/juareznasato/vuetify-mask.git"
   },
   "scripts": {
-    "serve": "vue-cli-service serve --port 8081",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vite preview --port 8081",
+    "build": "vite build",
+    "lint": "eslint src/**/*.vue --fix"
   },
   "devDependencies": {
-    "@mdi/font": "^5.9.55",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-vue": "^6.2.2",
+    "@mdi/font": "^7.x.x",
+    "@vitejs/plugin-vue": "^4.x.x",
+    "@vue/eslint-config-prettier": "^8.x.x",
+    "eslint": "^8.x.x",
+    "eslint-plugin-vue": "^9.x.x",
     "moment": "^2.29.1",
-    "prettier": "^1.19.1",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14",
-    "vuetify": "^2.5.8"
-  },
-  "dependencies": {
-    "maska": "^3.1.1"
+    "prettier": "^2.x.x",
+    "vite": "^4.x.x",
+    "vue": "^3.x.x",
+    "vuetify": "^3.x.x",
+    "maska": "^3.x.x"
   }
 }

@@ -29,15 +29,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Cnpj from "@/components/Cnpj.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-cnpj": Cnpj,
   },
+
   data: () => ({
     value: "50703512000192", // 123 or "123" or "" or null
     label: "CNPJ (Brazilian mask)",
   }),
-};
+});
 </script>

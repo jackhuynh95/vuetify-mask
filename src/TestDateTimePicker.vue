@@ -75,13 +75,17 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import DateTimePicker from "@/components/DateTimePicker.vue";
 
-export default {
+export default defineComponent({
   name: "app",
+
   components: {
     "v-text-field-datetimepicker": DateTimePicker,
   },
+
   data: () => ({
     value1: 1558220700000,
 
@@ -89,5 +93,5 @@ export default {
 
     value3: 1558220710000,
   }),
-};
+});
 </script>

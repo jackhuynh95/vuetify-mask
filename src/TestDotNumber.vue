@@ -30,15 +30,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import DotNumber from "@/components/DotNumber.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-dotnumber": DotNumber,
   },
+
   data: () => ({
     value: "1.23.456.789", // 123 or "123" or "" or null
     label: "Only Dot and Number",
   }),
-};
+});
 </script>

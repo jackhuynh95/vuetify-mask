@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-text-field
-      v-model="value"
+      :modelValue="modelValue"
       v-bind="properties"
       v-bind:label="label"
       v-bind:placeholder="placeholder"
@@ -19,9 +19,10 @@
           '.': { pattern: /[.]/ },
         },
       }"
+      @update:modelValue="$emit('update:modelValue', $event)"
     >
       <template v-slot:append>
-        <span v-if="value && value !== ''" class="v-maska__suffix">%</span>
+        <span v-if="modelValue && modelValue !== ''" class="v-maska__suffix">%</span>
       </template>
     </v-text-field>
   </div>
@@ -31,7 +32,7 @@
 import { computed, defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: [String, Number],
     default: '',
   },
@@ -58,5 +59,5 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['blur', 'change', 'click', 'focus', 'keydown', 'mousedown', 'mouseup']);
+const emit = defineEmits(['blur', 'change', 'click', 'focus', 'keydown', 'mousedown', 'mouseup', 'update:modelValue']);
 </script>

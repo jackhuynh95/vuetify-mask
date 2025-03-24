@@ -63,11 +63,15 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import moment from "moment";
-export default {
+export default defineComponent({
+  emits: ['update:modelValue'],
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: [Number, String],
       default: 0,
     },
@@ -88,6 +92,7 @@ export default {
       },
     },
   },
+
   data: () => ({
     modDate: "",
     modTime: "00:00",
@@ -96,17 +101,18 @@ export default {
     readonly: true,
     activeTab: 0,
   }),
+
   computed: {
     compShow: {
       get: function() {
         const THIS = this;
-        let mdf = this.value
-          ? (THIS.formattedDate = moment(new Date(this.value)).format(
+        let mdf = this.modelValue
+          ? (THIS.formattedDate = moment(new Date(this.modelValue)).format(
               this.options.format
             ))
           : "";
-        let mt = this.value
-          ? (THIS.modTime = moment(new Date(this.value)).format(
+        let mt = this.modelValue
+          ? (THIS.modTime = moment(new Date(this.modelValue)).format(
               this.options.useSeconds ? "HH:mm:ss" : "HH:mm"
             ))
           : "";
@@ -117,15 +123,16 @@ export default {
         THIS.modDate = null;
         THIS.modTime = this.options.useSeconds ? "00:00:00" : "00:00";
         THIS.formattedDate = null;
-        this.$emit("input", null);
+        this.$emit('update:modelValue', null);
       },
     },
   },
+
   watch: {
     // When computed.compShow.formattedDate is changed:
     formattedDate() {
-      return this.value
-        ? (this.modDate = moment(new Date(this.value)).format("YYYY-MM-DD"))
+      return this.modelValue
+        ? (this.modDate = moment(new Date(this.modelValue)).format("YYYY-MM-DD"))
         : null;
     },
     // Open always on date tab and selected hour
@@ -138,9 +145,10 @@ export default {
       }
     },
   },
+
   methods: {
     emit() {
-      this.$emit("input", this.stringToMillisecond(this.modDate, this.modTime));
+      this.$emit('update:modelValue', this.stringToMillisecond(this.modDate, this.modTime));
     },
     stringToMillisecond: function(date, time) {
       return Date.parse(date + " " + time);
@@ -153,7 +161,7 @@ export default {
       }
     },
   },
-};
+});
 // Str to milli
 // var d = Date.parse(date);
 // milli to date

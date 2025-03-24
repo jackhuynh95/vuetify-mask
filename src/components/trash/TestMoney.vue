@@ -36,16 +36,19 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Money from "@/components/Money.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-money": Money,
   },
+
   data: () => ({
     value: "123456789.00", // 1.23 or "1.23" or "" or null
     label: "Money",
     disabled: false,
   }),
-};
+});
 </script>

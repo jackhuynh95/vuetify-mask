@@ -7,7 +7,7 @@
             name="namYear"
             ref="refYear"
             maxlength="4"
-            v-model="value.year"
+            v-model="modelValue.year"
             v-bind:label="label.year"
             v-bind:placeholder="placeholder.year"
             v-bind="properties"
@@ -27,7 +27,7 @@
             name="namMonth"
             ref="refMonth"
             maxlength="2"
-            v-model="value.month"
+            v-model="modelValue.month"
             v-bind:label="label.month"
             v-bind:placeholder="placeholder.month"
             v-bind="properties"
@@ -47,7 +47,7 @@
             name="namStartDay"
             ref="refStartDay"
             maxlength="2"
-            v-model="value.startDay"
+            v-model="modelValue.startDay"
             v-bind:label="label.startDay"
             v-bind:placeholder="placeholder.day"
             v-bind="properties"
@@ -67,7 +67,7 @@
             name="namFinalDay"
             ref="refFinishDay"
             maxlength="2"
-            v-model="value.finishDay"
+            v-model="modelValue.finishDay"
             v-bind:label="label.finishDay"
             v-bind:placeholder="placeholder.day"
             v-bind="properties"
@@ -88,12 +88,16 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import moment from "moment";
 
-export default {
+export default defineComponent({
+  emits: ['blur', 'change', 'click', 'focus', 'keydown', 'mousedown', 'mouseup'],
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: Object,
       default: function () {
         return {
@@ -140,7 +144,9 @@ export default {
       },
     },
   },
+
   data: () => ({}),
+
   methods: {
     keyPress($event) {
       // console.log($event.keyCode); //keyCodes value
@@ -152,94 +158,94 @@ export default {
       }
     },
     keyUpYear() {
-      if (this.value.year) {
-        if (this.value.year.length === 4) {
-          this.value.month = this.options.empty;
-          this.value.startDay = this.options.empty;
-          this.value.finishDay = this.options.empty;
+      if (this.modelValue.year) {
+        if (this.modelValue.year.length === 4) {
+          this.modelValue.month = this.options.empty;
+          this.modelValue.startDay = this.options.empty;
+          this.modelValue.finishDay = this.options.empty;
           this.$refs.refMonth.focus();
         } else {
-          if (this.value.year.length === 0) {
-            this.value.year = this.options.empty; 
+          if (this.modelValue.year.length === 0) {
+            this.modelValue.year = this.options.empty; 
           }
         }
       } else {
-        this.value.month = this.options.empty;
-        this.value.startDay = this.options.empty;
-        this.value.finishDay = this.options.empty; 
+        this.modelValue.month = this.options.empty;
+        this.modelValue.startDay = this.options.empty;
+        this.modelValue.finishDay = this.options.empty; 
       }
     },
     keyUpMonth() {
-      if (this.value.year && this.value.year.length === 4) {
-        if (this.value.month) {
-          if ((Number(this.value.month) < 0) || (Number(this.value.month) > 12)) {
-            this.value.month = this.options.empty;
+      if (this.modelValue.year && this.modelValue.year.length === 4) {
+        if (this.modelValue.month) {
+          if ((Number(this.modelValue.month) < 0) || (Number(this.modelValue.month) > 12)) {
+            this.modelValue.month = this.options.empty;
           } else {
-            if (this.value.month.length === 2) {
+            if (this.modelValue.month.length === 2) {
               this.$refs.refStartDay.focus();    
             }
           }
         } else {
-          this.value.startDay = this.options.empty;
-          this.value.finishDay = this.options.empty;
+          this.modelValue.startDay = this.options.empty;
+          this.modelValue.finishDay = this.options.empty;
         }
       } else {
-        this.value.month = this.options.empty;
+        this.modelValue.month = this.options.empty;
         this.$refs.refYear.focus();
       }
     },
     keyUpStartDay() {
-      if (this.value.year && this.value.year.length === 4) {
-        if (this.value.month && this.value.month.length === 2) {
-          if (this.value.startDay) {
-            if (this.value.startDay.length === 2) {
-              let m = moment(this.value.year +"-"+ this.value.month +"-"+ this.value.startDay, 'YYYY-MM-DD');
+      if (this.modelValue.year && this.modelValue.year.length === 4) {
+        if (this.modelValue.month && this.modelValue.month.length === 2) {
+          if (this.modelValue.startDay) {
+            if (this.modelValue.startDay.length === 2) {
+              let m = moment(this.modelValue.year +"-"+ this.modelValue.month +"-"+ this.modelValue.startDay, 'YYYY-MM-DD');
               if (!m.isValid()) {
-                this.value.startDay = this.options.empty;
+                this.modelValue.startDay = this.options.empty;
               } else {
                 this.$refs.refFinishDay.focus();
               }
             }
           } else {
-            this.value.finishDay = this.options.empty;
+            this.modelValue.finishDay = this.options.empty;
           }
         } else {
-          this.value.startDay = this.options.empty;
+          this.modelValue.startDay = this.options.empty;
           this.$refs.refMonth.focus();
         }
       } else {
-        this.value.startDay = this.options.empty;
+        this.modelValue.startDay = this.options.empty;
         this.$refs.refYear.focus();
       }
     },
     keyUpFinishDay() {
-      if (this.value.year && this.value.year.length === 4) {
-        if (this.value.month && this.value.month.length === 2) {
-          if (this.value.startDay && this.value.startDay.length === 2) {
-            if (this.value.finishDay) {
-              let m = moment(this.value.year +"-"+ this.value.month +"-"+ this.value.startDay, 'YYYY-MM-DD');
+      if (this.modelValue.year && this.modelValue.year.length === 4) {
+        if (this.modelValue.month && this.modelValue.month.length === 2) {
+          if (this.modelValue.startDay && this.modelValue.startDay.length === 2) {
+            if (this.modelValue.finishDay) {
+              let m = moment(this.modelValue.year +"-"+ this.modelValue.month +"-"+ this.modelValue.startDay, 'YYYY-MM-DD');
               if (!m.isValid()) {
-                this.value.startDay = this.options.empty;
+                this.modelValue.startDay = this.options.empty;
               } else {
-                if (this.value.finishDay.length === 2) {
-                  if (this.value.startDay > this.value.finishDay) {
-                    this.value.startDay = this.options.empty;      
-                    this.value.finishDay = this.options.empty;      
+                if (this.modelValue.finishDay.length === 2) {
+                  if (this.modelValue.startDay > this.modelValue.finishDay) {
+                    this.modelValue.startDay = this.options.empty;      
+                    this.modelValue.finishDay = this.options.empty;      
                     this.$refs.refStartDay.focus();
                   }
                 }
               }
             }
           } else {
-            this.value.finishDay = this.options.empty;
+            this.modelValue.finishDay = this.options.empty;
             this.$refs.refStartDay.focus();
           }
         } else {
-          this.value.finishDay = this.options.empty;
+          this.modelValue.finishDay = this.options.empty;
           this.$refs.refMonth.focus();
         }
       } else {
-        this.value.finishDay = this.options.empty;
+        this.modelValue.finishDay = this.options.empty;
         this.$refs.refYear.focus();
       }
     },
@@ -269,5 +275,5 @@ export default {
       this.$refs.refYear.focus();
     }
   },
-};
+});
 </script>

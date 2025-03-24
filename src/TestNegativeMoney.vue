@@ -27,17 +27,20 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import NegativeMoney from "@/components/NegativeDecimal.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-negative-money": NegativeMoney,
   },
+
   data: () => ({
     value: -123456789.0, // 1.23 or "1.23" or "" or null
     label: "Negative Money",
     disabled: false,
     signal: "",
   }),
-};
+});
 </script>

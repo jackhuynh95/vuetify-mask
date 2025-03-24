@@ -29,15 +29,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Cep from "@/components/Cep.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-cep": Cep,
   },
+
   data: () => ({
     value: "82515260", // 1.23 or "1.23" or "" or null
     label: "CEP (Brazilian mask)",
   }),
-};
+});
 </script>

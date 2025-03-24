@@ -30,15 +30,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import DateTime from "@/components/DateTime.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-datetime": DateTime,
   },
+
   data: () => ({
     value: "1595386800000", // Milliseconds
     label: "DateTime",
   }),
-};
+});
 </script>

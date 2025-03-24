@@ -32,15 +32,18 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Money from "@/components/Decimal.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-percent": Money,
   },
+
   data: () => ({
     value: "34.20", // 1.23 or "1.23" or "" or null
     label: "Percent",
   }),
-};
+});
 </script>

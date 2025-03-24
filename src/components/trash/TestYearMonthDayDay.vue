@@ -31,16 +31,19 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import YearMonthDayDay from "@/components/YearMonthDayDay.vue";
 
-export default {
+export default defineComponent({
   components: {
     "v-text-field-yearmonthdayday": YearMonthDayDay,
   },
+
   data: () => ({
     value: {year: "", month: "", startDay: "", finishDay: ""},
     label: {year: "Year", month: "Month", startDay: "Start Day", finishDay: "Finish Day"},
     placeholder: {year: "AAAA", month: "MM", day: "DD"},
   }),
-};
+});
 </script>

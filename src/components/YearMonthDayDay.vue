@@ -88,12 +88,26 @@
 </template>
 
 <script>
+import { defineComponent, nextTick } from 'vue';
+
 import moment from "moment";
 
-export default {
+export default defineComponent({
+  emits: [
+    'blur',
+    'change',
+    'click',
+    'focus',
+    'keydown',
+    'mousedown',
+    'mouseup',
+    'update:modelValue',
+  ],
+
   model: { prop: "value", event: "input" },
+
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: "",
     },
@@ -120,39 +134,42 @@ export default {
       },
     },
   },
+
   data: () => ({
     year: "",
     month: "",
     startDay: "",
     finishDay: "",
   }),
+
   watch: {
-    value: {
+    modelValue: {
       handler() {
-        this.$nextTick(() => {
-          if (this.value) {
-            this.year = this.value.toString().split(';')[0];
-            this.month = this.value.toString().split(';')[1];
-            this.startDay = this.value.toString().split(';')[2];
-            this.finishDay = this.value.toString().split(';')[3];
+        nextTick(() => {
+          if (this.modelValue) {
+            this.year = this.modelValue.toString().split(';')[0];
+            this.month = this.modelValue.toString().split(';')[1];
+            this.startDay = this.modelValue.toString().split(';')[2];
+            this.finishDay = this.modelValue.toString().split(';')[3];
           }
         });
       },
       immediate: true,
     },
     year() {
-      this.$emit("input", this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
+      this.$emit('update:modelValue', this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
     },
     month() {
-      this.$emit("input", this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
+      this.$emit('update:modelValue', this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
     },
     startDay() {
-      this.$emit("input", this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
+      this.$emit('update:modelValue', this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
     },
     finishDay() {
-      this.$emit("input", this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
+      this.$emit('update:modelValue', this.year +";"+ this.month +";"+ this.startDay +";"+ this.finishDay +";");
     },
   },
+
   methods: {
     keyPress($event) {
       // console.log($event.keyCode); //keyCodes value
@@ -292,5 +309,5 @@ export default {
       }
     }
   },
-};
+});
 </script>
