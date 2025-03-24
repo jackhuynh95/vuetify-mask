@@ -3,6 +3,9 @@
 ## Project
 vuetify-mask is a component for working with some of the main types of masks in the v-text-field.
 
+## For Vue 3 and Vuetify 3
+   See [vuetify-mask-next](https://github.com/jackhuynh95/vuetify-mask/tree/vue3-vuetify3)
+
 ## Links
 [See Demo here](https://rzfpe.csb.app/).  
 [GitHub](https://github.com/juareznasato/vuetify-mask).  
