@@ -13,6 +13,7 @@
 ######################################################################
 #
 # --> COMANDOS <--
+# $ npm version patch   Bump the patch version
 # $ npm login           login in npm
 # $ sh npm.sh -pk       pack
 # $ sh npm.sh -pb       publish
